@@ -98,8 +98,8 @@ public:
 	}
 	LinkedList(Node * node)
 	{
-		Node * head = new Node;
-		head = node;
+		//Node * head = new Node;
+		_head = node;
 	}
 	Node * get_head()
 	{
@@ -245,6 +245,25 @@ public:
 		}
 		_head = cur;
 		return;
+	}
+
+	int GetNodeFromHead(int position)
+	{
+		Node * h = new Node;
+		h = _head;
+		while (position != 0)
+		{
+			h = h->next;
+			position--;
+		}
+		return h->data;
+	}
+
+	int GetNodeFromTail(int position)
+	{
+		LinkedList revList(this->get_head());
+		revList.reverse();
+		return revList.GetNodeFromHead(position);
 	}
 
 	bool operator ==(const LinkedList& LL2)

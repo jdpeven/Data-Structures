@@ -26,9 +26,11 @@ int main(void)
 
 	myLL1.Print();
 
-	//myLL2.insertVal(15);
-	//myLL2.insertVal(12);
-	//myLL2.insertVal(5);
+	/*cout << "The first position is " << myLL1.GetNodeFromHead(1) << endl;
+	cout << "The first position from the end is " << myLL1.GetNodeFromTail(1) << endl;*/
+	/*myLL2.insertVal(15);
+	myLL2.insertVal(12);
+	myLL2.insertVal(5);
 	myLL2.insertVal(2);
 	myLL2.insertVal(1);
 
@@ -39,6 +41,7 @@ int main(void)
 	LinkedList Merged;
 	Merged = MergeSorted(myLL1, myLL2);
 	Merged.Print();
+	*/
 	//cout << (myLL1 == myLL2) << endl;
 	//myLL.insertAtPosition(33, 0);
 	
