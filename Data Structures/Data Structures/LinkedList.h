@@ -27,6 +27,12 @@ class LinkedList
 private:
 	Node * _head;
 public:
+	LinkedList()
+	{
+		Node* head = new Node;
+		head = nullptr;
+		_head = head;
+	}
 	LinkedList(int data)
 	{
 		Node * head = new Node;
@@ -59,15 +65,67 @@ public:
 	void insertValEnd(int data)
 	{
 		Node * new_node = new Node;
-		new_node->data = data;
-		new_node->next = nullptr;
-		Node * n = _head;
-
-		while (n->next != nullptr)
+		Node * h = new Node;
+		if (_head == nullptr)
 		{
-			n = n->next;
+			h->next = nullptr;
+			h->data = data;
+			_head = h;
 		}
-		n->next = new_node;
+		else
+		{
+			h = _head;
+			while (h->next != nullptr)
+			{
+				h = h->next;
+			}
+			new_node->data = data;
+			new_node->next = nullptr;
+			h->next = new_node;
+
+			return;
+		}
+	}
+
+	void insertAtPosition(int data, int index)
+	{
+		Node * new_node = new Node;
+		Node * h = new Node;
+		Node * ind_node = new Node;
+		Node * temp = new Node;
+		h = _head; //This will be the constant pointer to the head of the list
+		ind_node = _head; //This will be the one iterated through
+		if (h == nullptr) //linked list is empty
+		{
+			h->next = nullptr;
+			h->data = data;
+			_head = h;
+		}
+		new_node->next = nullptr;
+		new_node->data = data;
+		if (index == 0) //insert at head
+		{
+			new_node->next = _head;
+			_head = new_node;
+		}
+		else
+		{
+			while (h != nullptr)
+			{
+				if (index == 1) //reached the index
+				{
+					temp = ind_node->next;
+					ind_node->next = new_node;
+					new_node->next = temp;
+					return;
+				}
+				else
+				{
+					ind_node = ind_node->next;
+					index--;
+				}
+			}
+		}
 		return;
 	}
 

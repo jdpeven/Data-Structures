@@ -15,13 +15,14 @@
 int main(void)
 {
 	//BST_NODE myBST(10);
-	LinkedList myLL(0);
+	LinkedList myLL;
 
 	myLL.insertValEnd(10);
 	myLL.insertValEnd(3);
 	myLL.insertValEnd(5);
 	myLL.insertValEnd(4);
 	myLL.insertVal(15);
+	myLL.insertAtPosition(33, 0);
 
 	myLL.Print();
 
