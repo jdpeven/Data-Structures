@@ -129,6 +129,32 @@ public:
 		return;
 	}
 
+	void Delete(int index)
+	{
+		Node * iter_node = new Node;
+		iter_node = _head;
+		if (index == 0) //delete head
+		{
+			_head = _head->next;
+			return;
+		}
+		else
+		{
+			while (index != 1)
+			{
+				iter_node = iter_node->next;
+				index--;
+			}
+			//Now at the node to delete
+			iter_node->next = iter_node->next->next;
+		}
+	}
+
+	void printInReverse()
+	{
+
+	}
+
 	void insertNodeEnd(Node * new_node)
 	{
 		Node * iter = _head;
@@ -155,10 +181,34 @@ public:
 		_head = cur;
 		return;
 	}
+	bool operator ==(const LinkedList& LL2)
+	{
+		Node * LL1_head = new Node;
+		Node * LL2_head = new Node;
+		LL1_head = this->_head;
+		LL2_head = LL2._head;
+		while(LL1_head->data == LL2_head->data)
+		{
+			if (LL1_head->next == nullptr && LL2_head->next == nullptr)
+			{
+				return true;
+			}
+			else
+			{
+				LL1_head = LL1_head->next;
+				LL2_head = LL2_head->next;
+			}
+		}
+		return false;
+	}
+
 
 
 
 };
+
+
+
 
 
 
