@@ -14,23 +14,29 @@
 
 int main(void)
 {
-	BST_NODE myBST(10);
-	/*LinkedList myLL(0);
+	//BST_NODE myBST(10);
+	LinkedList myLL(0);
 
-	myLL.insertValEnd(0);
+	myLL.insertValEnd(10);
 	myLL.insertValEnd(3);
 	myLL.insertValEnd(5);
 	myLL.insertValEnd(4);
+	myLL.insertVal(15);
 
-	myLL.Print();*/
+	myLL.Print();
 
-	myBST.insert(5);
+	myLL.reverse();
+	cout << "Reversed" << endl;
+	myLL.Print();
+	system("pause");
+
+	/*myBST.insert(5);
 	myBST.insert(15);
 	myBST.insert(8);
 	myBST.insert(1);
 	myBST.insert(13);
 
-	myBST.preOrder();
+	myBST.preOrder();*/
 
 	return 0;
 }

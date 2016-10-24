@@ -25,13 +25,14 @@ struct Node
 class LinkedList
 {
 private:
-	Node * head;
+	Node * _head;
 public:
 	LinkedList(int data)
 	{
 		Node * head = new Node;
 		head->data = data;
 		head->next = nullptr;
+		_head = head;
 	}
 	LinkedList(Node * node)
 	{
@@ -40,11 +41,19 @@ public:
 	}
 	void Print()
 	{
-		while (head != nullptr)
+		Node* n = _head;
+		while (n != nullptr)
 		{
-			cout << head->data << endl;
-			head = head->next;
+			cout << n->data << endl;
+			n = n->next;
 		}
+	}
+	void insertVal(int data)
+	{
+		Node * new_node = new Node;
+		new_node->data = data;
+		new_node->next = _head;
+		_head = new_node;
 	}
 
 	void insertValEnd(int data)
@@ -52,8 +61,19 @@ public:
 		Node * new_node = new Node;
 		new_node->data = data;
 		new_node->next = nullptr;
-		Node * iter = head;
+		Node * n = _head;
 
+		while (n->next != nullptr)
+		{
+			n = n->next;
+		}
+		n->next = new_node;
+		return;
+	}
+
+	void insertNodeEnd(Node * new_node)
+	{
+		Node * iter = _head;
 		while (iter->next != nullptr)
 		{
 			iter = iter->next;
@@ -62,14 +82,19 @@ public:
 		return;
 	}
 
-	void insertNodeEnd(Node * new_node)
+	void reverse()
 	{
-		Node * iter = head;
-		while (iter->next != nullptr)
+		Node *h = _head;
+		Node *temp = nullptr;
+		Node *cur = nullptr;
+		while (h != nullptr)
 		{
-			iter = iter->next;
+			temp = h->next;
+			h->next = cur;
+			cur = h;
+			h = temp;
 		}
-		iter->next = new_node;
+		_head = cur;
 		return;
 	}
 
