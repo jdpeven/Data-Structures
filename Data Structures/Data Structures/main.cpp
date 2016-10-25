@@ -14,16 +14,21 @@
 
 int main(void)
 {
+	/*
 	//BST_NODE myBST(10);
 	LinkedList myLL1;
 	LinkedList myLL2;
 
 	myLL1.insertVal(10);
-	myLL1.insertVal(9);
+	myLL1.insertVal(10);
 	myLL1.insertVal(8);
-	myLL1.insertVal(6);
+	myLL1.insertVal(2);
 	myLL1.insertVal(2);
 
+	myLL1.Print();
+
+	cout << "Deleting the repeats" << endl;
+	myLL1.DeleteRepeat();
 	myLL1.Print();
 
 	/*cout << "The first position is " << myLL1.GetNodeFromHead(1) << endl;
@@ -52,8 +57,9 @@ int main(void)
 	/*myLL.reverse();
 	cout << "Reversed" << endl;
 	myLL.Print();*/
+	
 	system("pause");
-
+	
 	/*myBST.insert(5);
 	myBST.insert(15);
 	myBST.insert(8);

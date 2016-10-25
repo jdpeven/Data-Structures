@@ -89,6 +89,7 @@ public:
 		head = nullptr;
 		_head = head;
 	}
+
 	LinkedList(int data)
 	{
 		Node * head = new Node;
@@ -96,15 +97,18 @@ public:
 		head->next = nullptr;
 		_head = head;
 	}
+
 	LinkedList(Node * node)
 	{
 		//Node * head = new Node;
 		_head = node;
 	}
+
 	Node * get_head()
 	{
 		return _head;
 	}
+
 	void Print()
 	{
 		Node* n = _head;
@@ -114,6 +118,7 @@ public:
 			n = n->next;
 		}
 	}
+
 	void insertVal(int data)
 	{
 		Node * new_node = new Node;
@@ -266,7 +271,33 @@ public:
 		return revList.GetNodeFromHead(position);
 	}
 
-	bool operator ==(const LinkedList& LL2)
+	void DeleteRepeat()//Given a sorted linked list it will delete the repeated elements
+	{
+		Node * temp = new Node;
+		Node * h = new Node;
+		Node * iter = new Node;
+		h = _head;
+		iter = _head;
+		while (iter != nullptr)
+		{
+			if (iter->data == iter->next->data) //values are the same
+			{
+				temp = iter->next;
+				if (temp->next != nullptr)
+				{
+					while (iter->data == temp->next->data)
+					{
+						temp = temp->next;
+					}
+				}
+				iter->next = temp->next;
+			}
+			iter = iter->next;
+		}
+		_head = h;
+	}
+
+	bool operator == (const LinkedList& LL2)
 	{
 		Node * LL1_head = new Node;
 		Node * LL2_head = new Node;
