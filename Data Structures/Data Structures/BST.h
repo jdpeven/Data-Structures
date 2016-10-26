@@ -53,10 +53,14 @@ public:
 			this->_right->preOrder();
 		}
 	}
-	void postOrderTraversal()
+	void postOrder()
 	{
-
-
+		if (this != nullptr)
+		{
+			this->_left->postOrder();
+			this->_right->postOrder();
+			cout << this->_data << " ";
+		}
 	}
 
 	void inOrderTraversal()

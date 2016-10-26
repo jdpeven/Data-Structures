@@ -31,6 +31,9 @@ int main(void)
 	myBST.insert(13);
 
 	myBST.preOrder();
+	cout << endl;
+	myBST.postOrder();
+	cout << endl;
 
 	return 0;
 }
