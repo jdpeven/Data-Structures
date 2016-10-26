@@ -66,7 +66,14 @@ int main(void)
 	myBST.insert(1);
 	myBST.insert(13);
 
+<<<<<<< HEAD
 	myBST.preOrder();*/
+=======
+	myBST.preOrder();
+	cout << endl;
+	myBST.postOrder();
+	cout << endl;
+>>>>>>> origin/master
 
 	return 0;
 }
