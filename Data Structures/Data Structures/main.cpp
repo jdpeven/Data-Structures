@@ -55,8 +55,8 @@ int main(void)
 	//testHashTable();
 	//testDLL();
 	//testQueue();
-	//testBST();
-	testSorting();
+	testBST();
+	//testSorting();
 	
 	system("pause");
 

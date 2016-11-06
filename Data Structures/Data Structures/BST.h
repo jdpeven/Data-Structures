@@ -17,6 +17,12 @@ public:
 		_left = nullptr;
 		_right = nullptr;
 	}
+	BST_NODE()
+	{
+		_data = 0;
+		_left = nullptr;
+		_right = nullptr;
+	}
 
 	void insert(int val)
 	{
@@ -120,18 +126,40 @@ public:
 
 	}
 
+	void levelOrderTraversal()
+	{
+		vector<BST_NODE*> myvect;
+		queue<BST_NODE*> myqueue;
+		BST_NODE* current = new BST_NODE;
+		myqueue.push(this);
+		while (!myqueue.empty())
+		{
+			current = myqueue.front();
+			myqueue.pop();
+			if (current->_left != nullptr)
+			{
+				myqueue.push(current->_left);
+			}
+			if (current->_right != nullptr)
+			{
+				myqueue.push(current->_right);
+			}
+			//cout << current->_data << endl;
+			myvect.push_back(current);
+		}
+		for (int i = 0; i < myvect.size(); i++)
+		{
+			cout << myvect[i]->_data << " ";
+		}
+
+
+	}
 
 
 
 
 
 
-};
-
-struct tree {
-	int x;
-	tree * l;
-	tree * r;
 };
 
 /*int solution(int A, int B, tree*T)
@@ -187,7 +215,7 @@ void testBST()
 	myBST.insert(1);
 	myBST.insert(13);
 
-
+	myBST.levelOrderTraversal();
 
 
 	//myBST.preOrder();

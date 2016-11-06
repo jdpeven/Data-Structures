@@ -1,14 +1,10 @@
 ﻿  main.cpp
+c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\bst.h(150): warning C4018: '<': signed/unsigned mismatch
 c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\extra.h(38): warning C4018: '<': signed/unsigned mismatch
 c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\extra.h(140): warning C4018: '<': signed/unsigned mismatch
-c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\extra.h(157): warning C4018: '<': signed/unsigned mismatch
-c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\extra.h(167): warning C4018: '<': signed/unsigned mismatch
-c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\extra.h(190): warning C4018: '<': signed/unsigned mismatch
-c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\extra.h(204): warning C4018: '<': signed/unsigned mismatch
-c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\extra.h(257): warning C4018: '<': signed/unsigned mismatch
+c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\extra.h(150): warning C4018: '<': signed/unsigned mismatch
 c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\sorting.h(23): warning C4018: '<': signed/unsigned mismatch
 c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\sorting.h(56): warning C4018: '<': signed/unsigned mismatch
 c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\sorting.h(62): warning C4018: '<': signed/unsigned mismatch
-c:\users\jackson peven\documents\github\side project\data-structures\data structures\data structures\bst.h(269): warning C4715: 'solution': not all control paths return a value
   Data Structures.vcxproj -> C:\Users\Jackson Peven\Documents\GitHub\Side Project\Data-Structures\Data Structures\Debug\Data Structures.exe
   Data Structures.vcxproj -> C:\Users\Jackson Peven\Documents\GitHub\Side Project\Data-Structures\Data Structures\Debug\Data Structures.pdb (Full PDB)
