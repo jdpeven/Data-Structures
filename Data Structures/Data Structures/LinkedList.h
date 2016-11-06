@@ -16,12 +16,14 @@ using namespace std;
 
 //Here will be all the code for the linked list operations
 
+//template <typename T>;
+
 struct Node
 {
 	int data;
 	struct Node *next;
 
-	bool operator < (const Node& Node2)
+	/*bool operator < (const Node& Node2)
 	{
 		if (this->data < Node2.data)
 		{
@@ -75,7 +77,7 @@ struct Node
 		{
 			return false;
 		}
-	}
+	}*/
 };
 
 class LinkedList
@@ -160,14 +162,14 @@ public:
 		Node * temp = new Node;
 		h = _head; //This will be the constant pointer to the head of the list
 		ind_node = _head; //This will be the one iterated through
-		if (h == nullptr) //linked list is empty
-		{
-			h->next = nullptr;
-			h->data = data;
-			_head = h;
-		}
+		
 		new_node->next = nullptr;
 		new_node->data = data;
+
+		if (h == nullptr) //linked list is empty
+		{
+			_head = new_node;
+		}
 		if (index == 0) //insert at head
 		{
 			new_node->next = _head;
@@ -175,7 +177,7 @@ public:
 		}
 		else
 		{
-			while (h != nullptr)
+			while (ind_node != nullptr)
 			{
 				if (index == 1) //reached the index
 				{
@@ -215,9 +217,22 @@ public:
 		}
 	}
 
-	void printInReverse()
+	void ReversePrint() //This function worked on hackerrank because in hackerrank the node is the class for the LL
+		//so the functions could be called on the nodes themselves. So the recursive call in the else statement
+		// "ReversePrint(head->next); was a legitament call. Not sure how to implement it this way because 
+		//head->next does not contain the function "ReversePrint" only a linked list does.
 	{
-
+		Node *head = _head;
+		if (head->next == nullptr) //reached the end of the LL
+		{
+			cout << head->data << endl;;
+			return;
+		}
+		else
+		{
+			//ReversePrint(head->next);
+			cout << head->data << endl;
+		}
 	}
 
 	void insertNodeEnd(Node * new_node)
@@ -266,9 +281,30 @@ public:
 
 	int GetNodeFromTail(int position)
 	{
-		LinkedList revList(this->get_head());
+		LinkedList revList(_head);
 		revList.reverse();
 		return revList.GetNodeFromHead(position);
+	}
+
+	int GoodGetNodeFromTail(int position)
+	{
+		Node * slow = _head;
+		Node * fast = _head;
+
+		for (int i = 0; i < position; i++)
+		{
+			fast = fast->next;
+		}
+
+		while (fast->next != nullptr)
+		{
+			slow = slow->next;
+			fast = fast->next;
+		}
+		//now fast is at the end of the list, so slow is "position" elements away from the end of the list
+		int val = slow->data;
+
+		return val;
 	}
 
 	void DeleteRepeat()//Given a sorted linked list it will delete the repeated elements
@@ -278,7 +314,7 @@ public:
 		Node * iter = new Node;
 		h = _head;
 		iter = _head;
-		while (iter != nullptr)
+		while (iter->next != nullptr)
 		{
 			if (iter->data == iter->next->data) //values are the same
 			{
@@ -363,7 +399,62 @@ LinkedList MergeSorted(LinkedList LL1, LinkedList LL2)
 	return new_LL;
 }
 
+void testLL()
+{
+	//BST_NODE myBST(10);
+	LinkedList myLL1;
+	LinkedList myLL2;
 
+	cout << "We will initialize two Linked Lists, LL1 and LL2 " << endl;
+	cout << "First we have LL1" << endl;
+
+	myLL1.insertVal(10);
+	myLL1.insertVal(9);
+	myLL1.insertVal(6);
+	myLL1.insertVal(2);
+	myLL1.insertVal(2);
+
+	myLL1.Print();
+
+	cout << "Next we have LL2" << endl;
+
+	myLL2.insertVal(15);
+	myLL2.insertVal(12);
+	myLL2.insertVal(5);
+	myLL2.insertVal(2);
+	myLL2.insertVal(1);
+
+	myLL2.Print();
+
+	cout << "We can get to any element from the front or back" << endl;
+	cout << "The element at the first 'index' in LL1 is: " << myLL1.GetNodeFromHead(1) << endl;
+	cout << "The element at the second 'index' from the end in LL1 is: " << myLL1.GoodGetNodeFromTail(2) << endl;
+
+	//cout << "We can also insert values at given 'indexes'. We will insert 33 at postion 2 in LL1" << endl;
+	//myLL1.insertAtPosition(8, 2);
+	//myLL1.Print();
+
+	cout << "By overloading the operator '==', we can test Linked List equivalence" << endl;
+	cout << (myLL1 == myLL2) << endl;
+
+	cout << "Next we will merge the sortedlinked lists into a new sorted Linked List" << endl;
+	LinkedList Merged;
+	Merged = MergeSorted(myLL1, myLL2);
+	Merged.Print();
+
+	cout << "Now we can delete the repeats in the sorted merged Linked Lists" << endl;
+	Merged.DeleteRepeat();
+	Merged.Print();
+
+
+	cout << "We can also delete from the linked list. We will delete the element at 'index' 2 in the merged lists" << endl;
+	Merged.Delete(2);
+	Merged.Print();
+
+	cout << "Now we will reverse the merged Linked list" << endl;
+	Merged.reverse();
+	Merged.Print();
+}
 
 
 

@@ -2,10 +2,11 @@
 #ifndef BST_H
 #define BST_H
 
-
+#include <stack>
+#include <queue>
 
 class BST_NODE {
-private:
+public:
 	int _data;
 	BST_NODE * _right;
 	BST_NODE * _left;
@@ -63,13 +64,233 @@ public:
 		}
 	}
 
+	void topView()//this works by printing only what you would see from the top looking down
+		//so       8
+		//		  / \
+		//		 4   14
+		//		/ \  / \
+		//	   1   5 9  20
+		//would print 1-4-8-14-20
+	{
+		stack<BST_NODE*> mystack;
+		printLeft(this->_left, &mystack);
+		queue<BST_NODE*> myqueue;
+		printRight(this->_right, &myqueue);
+
+		int stacksize = mystack.size();
+		for (int i = 0; i < stacksize; i++)//originally it was "; i < mystack.size();" but because I was
+			//popping values off the stack, the size kept changing, messing with my iterator
+		{
+			cout << mystack.top()->_data << " ";
+			mystack.pop();
+		}
+		cout << _data << " ";
+		int queuesize = myqueue.size();
+		for (int j = 0; j < queuesize; j++)
+		{
+			cout << myqueue.front()->_data << " ";
+			myqueue.pop();
+		}
+		cout << endl;
+
+		return;
+	}
+	void printLeft(BST_NODE * node, stack<BST_NODE*> *mystack)
+	{
+		(*mystack).push(node);
+		if (node->_left != nullptr)
+		{
+			printLeft(node->_left, mystack);
+		}
+		return;
+	}
+
+	void printRight(BST_NODE * node, queue<BST_NODE*> *myqueue)
+	{
+		(*myqueue).push(node);
+		if (node->_right != nullptr)
+		{
+			printRight(node->_right, myqueue);
+		}
+		return;
+	}
+
 	void inOrderTraversal()
 	{
 
 	}
 
 
+
+
+
+
+
 };
+
+struct tree {
+	int x;
+	tree * l;
+	tree * r;
+};
+
+/*int solution(int A, int B, tree*T)
+{
+	int result = 0;
+	if (T->x < A || T->x >B)//if a node is less than the min or greater than the max,
+		//then none of it's children can fit in the range so we should just return
+	{
+		return 0;
+	}
+	else//T is in the range [A,B], and now we will find the largest subtree
+	{
+		if (T->l == nullptr && T->r == nullptr) //leaf
+		{
+			return 1; // we already know that this node is within [A,B] so we will return
+			//1 rather than zero, but with no recursive call
+		}
+		else if (T->l == nullptr && T->r != nullptr) //only has a right side
+		{
+			return 1 + solution(A, B, T->r);
+		}
+		else if (T->l != nullptr && T->r == nullptr)
+		{
+			return 1 + solution(A, B, T->l);
+		}
+		else
+		{
+			int left_result = solution(A, B, T->l);
+			int right_result = solution(A, B, T->r);
+
+			if (left_result >= right_result)
+			{
+				return 1 + left_result;
+			}
+			else if (left_result < right_result)
+			{
+				return 1 + right_result;
+			}
+			else
+			{
+				cout << "you missed a test case" << endl;
+			}
+		}
+	}
+}*/
+
+
+bool is_valid_subtree(int A, int B, tree*T)
+{
+	if (T == nullptr)
+	{
+		return true;
+	}
+	else if ((T->x > A) && (T->x < B) && is_valid_subtree(A, B, T->l) && is_valid_subtree(A, B, T->r))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+int solution(int A, int B, tree*T)
+{
+	int result = 0;
+	if (T->x < A || T->x >B)//if a node is less than the min or greater than the max,
+							//then none of it's children can fit in the range so we should just return
+	{
+		return 0;
+	}
+	else//T is in the range [A,B], and now we will find the largest subtree
+	{
+		if (T->l == nullptr && T->r == nullptr) //leaf
+		{
+			return 1; // we already know that this node is within [A,B] so we will return
+					  //1 rather than zero, but with no recursive call
+		}
+		else if (T->l == nullptr && T->r != nullptr) //only has a right side
+		{
+			if (is_valid_subtree(A, B, T->r))
+			{
+				return 1 + solution(A, B, T->r);
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		else if (T->l != nullptr && T->r == nullptr)
+		{
+			if (is_valid_subtree(A, B, T->l))
+			{
+				return 1 + solution(A, B, T->l);
+			}
+			else
+			{
+				return 0;
+			}
+		}
+		else
+		{
+				int left_result = solution(A, B, T->l);
+				int right_result = solution(A, B, T->r);
+
+				if (left_result >= right_result)
+				{
+					if (is_valid_subtree(A, B, T))
+					{
+						return 1 + left_result;
+					}
+					else
+					{
+						return left_result;
+					}
+				}
+				else if (left_result < right_result)
+				{
+					if (is_valid_subtree(A, B, T))
+					{
+						return 1 + right_result;
+					}
+					else
+					{
+						return right_result;
+					}
+				}
+				else
+				{
+					cout << "you missed a test case" << endl;
+				}
+			}
+		}
+	}
+
+
+void testBST()
+{
+	BST_NODE myBST(10);
+	myBST.insert(5);
+	myBST.insert(15);
+	myBST.insert(8);
+	myBST.insert(1);
+	myBST.insert(13);
+
+
+
+
+	//myBST.preOrder();
+	//myBST.preOrder();
+	//cout << endl;
+	//myBST.postOrder();
+	//cout << endl;
+
+	//cout << "Top view" << endl;
+	//myBST.topView();
+	return;
+}
 
 
 
